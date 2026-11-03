@@ -59,6 +59,13 @@
 
 <main>
 
+  <section class="container demo" id="demo">
+    <video autoplay muted loop playsinline controls preload="metadata" poster="static/videos/sleuthvlm_demo_poster.jpg" aria-label="SleuthVLM demo: two questions answered step by step">
+      <source src="static/videos/sleuthvlm_demo.mp4" type="video/mp4">
+    </video>
+    <p class="demo-caption">SleuthVLM answering two LVOmniBench questions on 36- and 59-minute videos, replayed from its logged trajectories. Every command, output and image is the model&rsquo;s own; the on-frame labels mark what its reasoning refers to.</p>
+  </section>
+
   <section class="container teaser">
     <figure>
       <img src="static/images/teaser.png" width="2400" height="915" alt="Left: average accuracy on four omni benchmarks against model size, with SleuthVLM above every omni model. Right: radar chart over Daily-Omni, WorldSense, OmniVideoBench, LVOmniBench, Video-MME-v2 and their average, where SleuthVLM (Opus 5.5) covers the largest area.">
