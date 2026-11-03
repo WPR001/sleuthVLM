@@ -89,6 +89,20 @@ code {
 
 sup { font-size: 0.68em; line-height: 0; }
 
+.logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 18px 40px;
+  margin-top: 22px;
+}
+.logos img { height: 48px; width: auto; }
+@media (max-width: 520px) {
+  .logos { gap: 14px 16px; }
+  .logos img { height: 32px; }
+}
+
 .links {
   display: flex;
   flex-wrap: wrap;
