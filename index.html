@@ -88,7 +88,7 @@
         <div class="stat-label">accuracy on Video-MME-v2, <b>best on every metric</b> of the leaderboard</div>
       </div>
       <div class="stat">
-        <div class="stat-value">+13.8</div>
+        <div class="stat-value">+13.4</div>
         <div class="stat-label">points for an open <b>27B VLM</b> over the best open-source omni model</div>
       </div>
     </div>
@@ -147,7 +147,7 @@
 
   <section class="container" id="results">
     <h2>Results</h2>
-    <p>Without hearing the audio directly, SleuthVLM (Opus 5.5) achieves the best average accuracy on four omni benchmarks, ahead of every closed-source omni model, and its lead grows with the length of the video. With an open 27B model, SleuthVLM leads the best open-source omni model by 13.8 points on average and by 18.8 on LVOmniBench.</p>
+    <p>Without hearing the audio directly, SleuthVLM (Opus 5.5) achieves the best average accuracy on four omni benchmarks, ahead of every closed-source omni model, and its lead grows with the length of the video. With an open 27B model, SleuthVLM leads the best open-source omni model by 13.4 points on average and by 18.8 on LVOmniBench.</p>
 
     <div class="table-wrap">
       <table class="results">
@@ -163,6 +163,7 @@
           <tr><td>Seed 2.0 Lite</td><td>A+V</td><td>81.4</td><td>67.3</td><td>58.5</td><td class="na">&ndash;</td><td class="na">&ndash;</td></tr>
           <tr><td>Muse Spark 1.2</td><td>A+V</td><td>79.6</td><td>65.0</td><td>62.2</td><td class="na">&ndash;</td><td class="na">&ndash;</td></tr>
           <tr class="group"><td colspan="7">Open-source omni models</td></tr>
+          <tr><td>Realtime-Venus-Omni</td><td>A+V</td><td>81.3</td><td>54.0</td><td>39.2</td><td>38.9</td><td>53.4</td></tr>
           <tr><td>MiniCPM-o 4.5</td><td>A+V</td><td>80.2</td><td>55.7</td><td>41.1</td><td>34.8</td><td>53.0</td></tr>
           <tr><td>Qwen3-Omni-30B-A3B</td><td>A+V</td><td>71.9</td><td>54.0</td><td>38.4</td><td>35.8</td><td>50.0</td></tr>
           <tr><td>video-SALMONN-R3</td><td>A+V</td><td>78.7</td><td class="na">&ndash;</td><td>43.9</td><td>42.9</td><td class="na">&ndash;</td></tr>
@@ -177,8 +178,8 @@
           <tr><td>Gemini 3.8 Flash (Qwen Code)</td><td>A+V</td><td class="na">&ndash;</td><td class="na">&ndash;</td><td><b>70.1</b></td><td>70.7</td><td class="na">&ndash;</td></tr>
           <tr class="group"><td colspan="7">VL + ASR agents</td></tr>
           <tr><td>Qwen3-VL-30B-A3B + TFO</td><td>V+ASR</td><td>68.9</td><td>51.9</td><td class="na">&ndash;</td><td class="na">&ndash;</td><td class="na">&ndash;</td></tr>
-          <tr class="ours"><td>SleuthVLM (Qwen3.8-27B, medium)</td><td>V+ASR</td><td>80.3 <span class="d-open">(&minus;2.1)</span></td><td>62.8 <span class="d-open">(+1.9)</span></td><td>58.3 <span class="d-open">(+14.4)</span></td><td>60.2 <span class="d-open">(+17.3)</span></td><td>65.4 <span class="d-open">(+12.4)</span></td></tr>
-          <tr class="ours"><td>SleuthVLM (Qwen3.8-27B)</td><td>V+ASR</td><td>80.4 <span class="d-open">(&minus;2.0)</span></td><td>64.5 <span class="d-open">(+3.6)</span></td><td>60.4 <span class="d-open">(+16.5)</span></td><td>61.7 <span class="d-open">(+18.8)</span></td><td>66.8 <span class="d-open">(+13.8)</span></td></tr>
+          <tr class="ours"><td>SleuthVLM (Qwen3.8-27B, medium)</td><td>V+ASR</td><td>80.3 <span class="d-open">(&minus;2.1)</span></td><td>62.8 <span class="d-open">(+1.9)</span></td><td>58.3 <span class="d-open">(+14.4)</span></td><td>60.2 <span class="d-open">(+17.3)</span></td><td>65.4 <span class="d-open">(+12.0)</span></td></tr>
+          <tr class="ours"><td>SleuthVLM (Qwen3.8-27B)</td><td>V+ASR</td><td>80.4 <span class="d-open">(&minus;2.0)</span></td><td>64.5 <span class="d-open">(+3.6)</span></td><td>60.4 <span class="d-open">(+16.5)</span></td><td>61.7 <span class="d-open">(+18.8)</span></td><td>66.8 <span class="d-open">(+13.4)</span></td></tr>
           <tr class="ours"><td>SleuthVLM (Opus 5.5)</td><td>V+ASR</td><td><u>84.4</u> <span class="d-closed">(&minus;0.7)</span></td><td><b>70.1</b> <span class="d-closed">(+0.5)</span></td><td><u>69.9</u> <span class="d-closed">(&minus;0.2)</span></td><td><b>75.5</b> <span class="d-closed">(+1.9)</span></td><td><b>75.0</b> <span class="d-closed">(+2.6)</span></td></tr>
         </tbody>
       </table>
