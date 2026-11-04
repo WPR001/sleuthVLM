@@ -229,6 +229,15 @@ figcaption {
 }
 .cards.cases { margin-top: 4px; }
 
+.takeaway {
+  margin: 18px 0 14px;
+  padding: 14px 20px;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--accent-soft);
+  font-size: 1.05rem;
+}
+
 /* Method steps */
 .steps {
   display: grid;
