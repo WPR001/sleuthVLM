@@ -6,7 +6,7 @@
   <title>SleuthVLM: Do We Really Need Audio-in-Video for Omni Video Understanding?</title>
   <meta name="description" content="SleuthVLM answers audio-visual questions with a VLM that never hears the audio directly: speech becomes a word-timed transcript, and the VLM sleuths the video with tools. It achieves the best average accuracy on four omni benchmarks and tops the Video-MME-v2 leaderboard.">
   <meta property="og:title" content="SleuthVLM: Do We Really Need Audio-in-Video for Omni Video Understanding?">
-  <meta property="og:description" content="A VLM that never hears the audio directly beats the omni models that do: 75.0% on four omni benchmarks and 77.8% on Video-MME-v2.">
+  <meta property="og:description" content="SleuthVLM never hears the audio directly and sets a new state of the art: 75.0% on four omni benchmarks and 77.8% on Video-MME-v2.">
   <meta property="og:image" content="static/images/teaser.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -78,7 +78,7 @@
   <section class="container teaser">
     <figure>
       <img src="static/images/teaser.png" width="2400" height="915" alt="Left: average accuracy on four omni benchmarks against model size, with SleuthVLM above every omni model. Right: radar chart over Daily-Omni, WorldSense, OmniVideoBench, LVOmniBench, Video-MME-v2 and their average, where SleuthVLM (Opus 5.5) covers the largest area.">
-      <figcaption><b>SleuthVLM never hears the audio directly, yet beats the omni models that do.</b> (a) Average accuracy on four omni benchmarks against model size; closed-source models are on the right. (b) Accuracy on the four omni benchmarks, Video-MME-v2 and their average; numbers give SleuthVLM (Opus 5.5) and, in parentheses, its difference from the best closed-source omni model.</figcaption>
+      <figcaption><b>SleuthVLM never hears the audio directly and sets a new state of the art.</b> (a) Average accuracy on four omni benchmarks against model size; closed-source models are on the right. (b) Accuracy on the four omni benchmarks, Video-MME-v2 and their average; numbers give SleuthVLM (Opus 5.5) and, in parentheses, its difference from the best closed-source omni model.</figcaption>
     </figure>
 
     <div class="stats">
@@ -91,19 +91,19 @@
         <div class="stat-label">accuracy on Video-MME-v2, <b>best on every metric</b> of the leaderboard</div>
       </div>
       <div class="stat">
-        <div class="stat-value">+13.4</div>
-        <div class="stat-label">points for an open <b>27B VLM</b> over the best open-source omni model</div>
+        <div class="stat-value">+18.8</div>
+        <div class="stat-label">points for an open <b>27B VLM</b> over the best open-source omni model on LVOmniBench, with videos up to 90 minutes</div>
       </div>
     </div>
   </section>
 
   <section class="container" id="abstract">
     <h2>Abstract</h2>
-    <p>Omni models answer questions about videos by jointly processing sampled frames and audio in one turn, with progress driven largely by scaling model size and omni training data. We ask whether a model needs to hear the audio directly at all, and present <b>SleuthVLM</b>, an agent harness built on a VLM that never hears the audio directly: speech is transcribed into text, and the VLM sleuths the video on its own without any predefined workflow. On four omni benchmarks with videos up to 90 minutes, SleuthVLM achieves the best average accuracy, <b>75.0%</b>, 2.6 points above Gemini 3.8 Flash, and it also tops the Video-MME-v2 leaderboard with <b>77.8%</b>; with an open-source 27B VLM, it beats all open-source omni models. We draw three findings: searching outperforms passive observation; agentic ability matters more than direct audio access, as omni training costs part of a VLM&rsquo;s agentic ability; and small agentic models are highly competitive. So we provide a simple but effective starting point for omni video understanding.</p>
+    <p>Omni models answer questions about videos by jointly processing sampled frames and audio in one turn, while VLMs have become strong agents that can search a video over many turns. We ask how far a model can go without hearing the audio, and present <b>SleuthVLM</b>, a simple multi-turn harness built on such a VLM that never hears the audio directly: speech is transcribed into text, and the VLM sleuths the video without a predefined workflow. On four omni benchmarks with videos up to 90 minutes, SleuthVLM achieves the best average accuracy: <b>75.0%</b>, 2.6 points above Gemini 3.8 Flash, and it tops the Video-MME-v2 leaderboard with <b>77.8%</b>; with Qwen3.8-27B, it is comparable to open-source omni models on short videos and better on long ones. We draw three insights: searching outperforms passive observation; agentic ability matters as much as direct audio access; and small agentic models are highly competitive. So we provide a simple but effective starting point for omni video understanding.</p>
   </section>
 
   <section class="container" id="findings">
-    <h2>Three findings</h2>
+    <h2>Three insights</h2>
     <div class="cards">
       <article class="card">
         <div class="card-num">1</div>
@@ -112,8 +112,8 @@
       </article>
       <article class="card">
         <div class="card-num">2</div>
-        <h3>Agentic ability matters more than direct audio access.</h3>
-        <p>Even with access to audio, omni models in our harness perform below SleuthVLM with Opus 5.5, which relies on transcripts; omni models also need strong agentic capabilities.</p>
+        <h3>Agentic ability matters as much as direct audio access.</h3>
+        <p>Opus 5.5, reading transcripts alone, is the strongest reasoning model in our harness, ahead of omni models that can also listen, and agentic ability lifts omni models as well.</p>
       </article>
       <article class="card">
         <div class="card-num">3</div>
@@ -126,7 +126,7 @@
 
   <section class="container" id="method">
     <h2>Method</h2>
-    <p>SleuthVLM answers audio-visual questions with a vision-language model that never hears the audio directly. The audio is transcribed once per video with word-level timestamps, and the VLM uses a small set of tools to search the video and the transcript. The harness specifies only the accessible resources, a brief operating guide and a budget; the VLM decides where to look, how closely to inspect and when to stop, using the transcript as an index into long videos.</p>
+    <p>Building on the agentic ability of frontier VLMs, SleuthVLM answers audio-visual questions with a vision-language model that never hears the audio directly. The audio is transcribed once per video with word-level timestamps, and the VLM uses a small set of tools to search the video and the transcript. The harness specifies only the accessible resources, a brief agentic guide and a budget; the VLM decides where to look, how closely to inspect and when to stop, using the transcript as an index into long videos.</p>
     <figure class="wide">
       <img src="static/images/method.png" width="2400" height="1176" alt="Overview of SleuthVLM: (a) speech is turned into a word-timed transcript, (b) a VLM gathers evidence with tools in a sandbox, (c) the model answers within a fixed budget.">
       <figcaption><b>Overview of SleuthVLM.</b> (a) Once per video, an ASR model transcribes the speech and a forced aligner assigns timestamps to each word, preserving non-speech intervals as gaps. (b) A VLM gathers evidence by calling tools over the muted video and transcript in a sandbox. (c) The model answers once it has sufficient evidence, subject to fixed budgets. The illustrated trajectory is a real example from Daily-Omni, answered correctly in 13 turns.</figcaption>
@@ -150,11 +150,11 @@
 
   <section class="container" id="results">
     <h2>Results</h2>
-    <p>Without hearing the audio directly, SleuthVLM (Opus 5.5) achieves the best average accuracy on four omni benchmarks, ahead of every closed-source omni model, and its lead grows with the length of the video. With an open 27B model, SleuthVLM leads the best open-source omni model by 13.4 points on average and by 18.8 on LVOmniBench.</p>
+    <p>Without hearing the audio, SleuthVLM (Opus 5.5) achieves the best average accuracy on four omni benchmarks, 75.0%, above all closed-source omni models. Without any training, SleuthVLM (Qwen3.8-27B) is comparable to open-source omni models trained on large amounts of data: OmniVideo-R1 post-trains Qwen3-Omni-30B-A3B with RL on 101K samples using 128 GPUs, yet SleuthVLM stays within 2.4 points on Daily-Omni and WorldSense and leads by 15.6 points on OmniVideoBench. Its lead grows with the length of the video, reaching 18.8 points on LVOmniBench.</p>
 
     <div class="table-wrap">
       <table class="results">
-        <caption><b>Comparison with omni models and agents on four omni benchmarks</b> (accuracy, %). A+V: audio as input; V+ASR: speech as a timed transcript, no direct audio. <b>Bold</b>: best; <u>underline</u>: second best; &ndash;: not reported. In parentheses: difference from the best open-source omni model (<span class="d-open">green</span>) or from the best closed-source omni model or Qwen Code agent (<span class="d-closed">red</span>). All reasoning models run with high reasoning effort; medium: Qwen3.8-27B with medium reasoning effort.</caption>
+        <caption><b>Comparison with omni models and agents on four omni benchmarks</b> (accuracy, %). A+V: audio as input; V+ASR: speech as a timed transcript, no direct audio. <b>Bold</b>: best; <u>underline</u>: second best; &ndash;: not reported; Avg.: mean over the four benchmarks. In parentheses: difference from the best open-source omni model (<span class="d-open">green</span>) or from the best closed-source omni model or Qwen Code agent (<span class="d-closed">red</span>). Medium: Qwen3.8-27B with medium reasoning effort.</caption>
         <thead>
           <tr><th>Model</th><th>Input</th><th>Daily-Omni</th><th>WorldSense</th><th>OmniVideoBench</th><th>LVOmniBench</th><th>Avg.</th></tr>
         </thead>
@@ -164,11 +164,11 @@
           <tr><td>Qwen3.8-Omni-Flash</td><td>A+V</td><td><b>85.1</b></td><td>68.5</td><td>63.4</td><td>63.3</td><td>70.1</td></tr>
           <tr><td>Qwen3.5-Omni-Plus</td><td>A+V</td><td><b>85.1</b></td><td>63.9</td><td>53.8</td><td>53.2</td><td>64.0</td></tr>
           <tr><td>Seed 2.0 Lite</td><td>A+V</td><td>81.4</td><td>67.3</td><td>58.5</td><td class="na">&ndash;</td><td class="na">&ndash;</td></tr>
-          <tr><td>Muse Spark 1.2</td><td>A+V</td><td>79.6</td><td>65.0</td><td>62.2</td><td class="na">&ndash;</td><td class="na">&ndash;</td></tr>
           <tr class="group"><td colspan="7">Open-source omni models</td></tr>
           <tr><td>Realtime-Venus-Omni</td><td>A+V</td><td>81.3</td><td>54.0</td><td>39.2</td><td>38.9</td><td>53.4</td></tr>
           <tr><td>MiniCPM-o 4.5</td><td>A+V</td><td>80.2</td><td>55.7</td><td>41.1</td><td>34.8</td><td>53.0</td></tr>
           <tr><td>Qwen3-Omni-30B-A3B</td><td>A+V</td><td>71.9</td><td>54.0</td><td>38.4</td><td>35.8</td><td>50.0</td></tr>
+          <tr><td>OmniVideo-R1</td><td>A+V</td><td>82.8</td><td>65.8</td><td>44.8</td><td class="na">&ndash;</td><td class="na">&ndash;</td></tr>
           <tr><td>video-SALMONN-R3</td><td>A+V</td><td>78.7</td><td class="na">&ndash;</td><td>43.9</td><td>42.9</td><td class="na">&ndash;</td></tr>
           <tr><td>LongCat-Flash-Omni</td><td>A+V</td><td>82.4</td><td>60.9</td><td class="na">&ndash;</td><td class="na">&ndash;</td><td class="na">&ndash;</td></tr>
           <tr><td>video-SALMONN 2+ (72B)</td><td>A+V</td><td>79.4</td><td>56.5</td><td class="na">&ndash;</td><td class="na">&ndash;</td><td class="na">&ndash;</td></tr>
@@ -181,8 +181,8 @@
           <tr><td>Gemini 3.8 Flash (Qwen Code)</td><td>A+V</td><td class="na">&ndash;</td><td class="na">&ndash;</td><td><b>70.1</b></td><td>70.7</td><td class="na">&ndash;</td></tr>
           <tr class="group"><td colspan="7">VL + ASR agents</td></tr>
           <tr><td>Qwen3-VL-30B-A3B + TFO</td><td>V+ASR</td><td>68.9</td><td>51.9</td><td class="na">&ndash;</td><td class="na">&ndash;</td><td class="na">&ndash;</td></tr>
-          <tr class="ours"><td>SleuthVLM (Qwen3.8-27B, medium)</td><td>V+ASR</td><td>80.3 <span class="d-open">(&minus;2.1)</span></td><td>62.8 <span class="d-open">(+1.9)</span></td><td>58.3 <span class="d-open">(+14.4)</span></td><td>60.2 <span class="d-open">(+17.3)</span></td><td>65.4 <span class="d-open">(+12.0)</span></td></tr>
-          <tr class="ours"><td>SleuthVLM (Qwen3.8-27B)</td><td>V+ASR</td><td>80.4 <span class="d-open">(&minus;2.0)</span></td><td>64.5 <span class="d-open">(+3.6)</span></td><td>60.4 <span class="d-open">(+16.5)</span></td><td>61.7 <span class="d-open">(+18.8)</span></td><td>66.8 <span class="d-open">(+13.4)</span></td></tr>
+          <tr class="ours"><td>SleuthVLM (Qwen3.8-27B, medium)</td><td>V+ASR</td><td>80.3 <span class="d-open">(&minus;2.5)</span></td><td>62.8 <span class="d-open">(&minus;3.0)</span></td><td>58.3 <span class="d-open">(+13.5)</span></td><td>60.2 <span class="d-open">(+17.3)</span></td><td>65.4 <span class="d-open">(+12.0)</span></td></tr>
+          <tr class="ours"><td>SleuthVLM (Qwen3.8-27B)</td><td>V+ASR</td><td>80.4 <span class="d-open">(&minus;2.4)</span></td><td>64.5 <span class="d-open">(&minus;1.3)</span></td><td>60.4 <span class="d-open">(+15.6)</span></td><td>61.7 <span class="d-open">(+18.8)</span></td><td>66.8 <span class="d-open">(+13.4)</span></td></tr>
           <tr class="ours"><td>SleuthVLM (Opus 5.5)</td><td>V+ASR</td><td><u>84.4</u> <span class="d-closed">(&minus;0.7)</span></td><td><b>70.1</b> <span class="d-closed">(+0.5)</span></td><td><u>69.9</u> <span class="d-closed">(&minus;0.2)</span></td><td><b>75.5</b> <span class="d-closed">(+1.9)</span></td><td><b>75.0</b> <span class="d-closed">(+2.6)</span></td></tr>
         </tbody>
       </table>
@@ -231,8 +231,8 @@
         <p>In (c), neither the transcript, a single word, nor the frames tell how the music changes. One call to <code>audio_caption</code> on the first 30 s returns a fast opening that turns slow and gentle near 0:08, and the model checks it against the strumming in the frames.</p>
       </article>
       <article class="card">
-        <h3>A VLM against an omni model</h3>
-        <p>In (d), Opus 5.5 binds a viewer&rsquo;s first comment at 05:19 of an 83-minute stream to the sentence spoken at that moment in five turns. Gemini 3.8 Flash finds the same evidence, loses it, and answers wrongly after 27 turns and 21 times the tokens.</p>
+        <h3>A VLM and an omni model in one harness</h3>
+        <p>In (d), Opus 5.5 binds a viewer&rsquo;s first comment at 05:19 of an 83-minute stream to the sentence spoken at that moment in five turns. Gemini 3.8 Flash, which may also listen, finds the same evidence and keeps searching, answering after 27 turns and 21 times the tokens.</p>
       </article>
     </div>
 
@@ -243,7 +243,7 @@
       <button role="tab" aria-selected="false" aria-controls="case-panel" data-src="static/images/case_3.jpg" data-caption="Answered from the timed transcript. (a) A gap that rules out the spoken options. (b) Word times that reveal one sustained voice.">Transcript III</button>
       <button role="tab" aria-selected="false" aria-controls="case-panel" data-src="static/images/case_4.jpg" data-caption="With the audio_caption tool. (a) How the music changes. (b) Which instrument drives the rhythm, settled by two differently worded calls.">Audio caption I</button>
       <button role="tab" aria-selected="false" aria-controls="case-panel" data-src="static/images/case_5.jpg" data-caption="With the audio_caption tool. (a) A non-speech sound that explains the plot. (b) The start of the first music in a 41-minute video, located by the transcript gaps and confirmed by the tool.">Audio caption II</button>
-      <button role="tab" aria-selected="false" aria-controls="case-panel" data-src="static/images/case_6.jpg" data-caption="The same question in the same harness with two reasoning models. (a) SleuthVLM (Opus 5.5), a VLM, binds the comment to the sentence spoken at that moment in five turns. (b) SleuthVLM (Gemini 3.8 Flash), an omni model, finds the same evidence and loses it over 27 turns.">VLM vs. omni model</button>
+      <button role="tab" aria-selected="false" aria-controls="case-panel" data-src="static/images/case_6.jpg" data-caption="The same question in the same harness with two reasoning models. (a) SleuthVLM (Opus 5.5), a VLM, binds the comment to the sentence spoken at that moment in five turns. (b) SleuthVLM (Gemini 3.8 Flash), an omni model, finds the same evidence and keeps searching for 27 turns.">VLM and omni model</button>
     </div>
     <figure class="wide case-panel" id="case-panel" role="tabpanel">
       <a href="static/images/case_1.jpg" target="_blank" rel="noopener"><img src="static/images/case_1.jpg" width="1800" height="1796" loading="lazy" alt="Step-by-step trajectory of SleuthVLM."></a>
