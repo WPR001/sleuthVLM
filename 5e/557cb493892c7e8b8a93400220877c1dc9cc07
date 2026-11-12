@@ -1,0 +1,23 @@
+static/css/style.css
+  s_a6f48806641c47::t_3258a3d3161b54 164-227,244-254
+static/js/main.js
+  s_a6f48806641c47::t_3258a3d3161b54 1-70
+index.html
+  s_a6f48806641c47::t_475d9de666db55 71-102
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "5e557cb493892c7e8b8a93400220877c1dc9cc07",
+  "prompts": {},
+  "sessions": {
+    "s_a6f48806641c47": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a13f6a-145c-7e91-a3e1-b50db5d963e6",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "WPR001 <894993271@qq.com>"
+    }
+  }
+}
