@@ -1,0 +1,24 @@
+static/css/style.css
+  s_a6f48806641c47::t_355e66496b582c 208-214,216,218-220,222-223,226,228,231-249,278
+index.html
+  s_a6f48806641c47::t_355e66496b582c 16,79,89,91,95-96,100-101,104-105,108,110,311
+static/js/main.js
+  s_a6f48806641c47::t_355e66496b582c 1,5,8,11-13,15-24,26-30,32,38-40,42-45,49,53,60-109,111-116,122
+  s_a6f48806641c47::t_48fbc559fdc219 25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "75c8d8add202fe5efd9c9bde86fe41c433ea19a1",
+  "prompts": {},
+  "sessions": {
+    "s_a6f48806641c47": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a13f6a-145c-7e91-a3e1-b50db5d963e6",
+        "model": "gpt-6-astra"
+      },
+      "human_author": "WPR001 <894993271@qq.com>"
+    }
+  }
+}
