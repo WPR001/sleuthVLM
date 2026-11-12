@@ -205,23 +205,48 @@ figcaption {
 .demo-arrow svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .demo-position { min-width: 44px; text-align: center; font-size: 0.8rem; color: var(--ink-2); font-variant-numeric: tabular-nums; }
 .demo-track {
-  display: flex;
-  align-items: flex-start;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  touch-action: pan-y;
   border-radius: var(--radius);
 }
-.demo-track::-webkit-scrollbar { display: none; }
+.demo-rail {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  width: 100%;
+  transform: translate3d(0, 0, 0);
+  transition: transform 420ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.demo-track.is-dragging { cursor: grabbing; user-select: none; }
+.demo-track.is-dragging .demo-rail { transition: none; }
 .demo-slide {
   flex: 0 0 100%;
+  width: 100%;
   min-width: 0;
+  max-width: 100%;
   margin: 0;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
-.demo-choice:focus-visible, .demo-arrow:focus-visible, .demo-track:focus-visible {
+.demo-media { position: relative; aspect-ratio: 16 / 9; }
+.demo-start {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  padding: 12px 24px;
+  background: rgba(7, 11, 20, 0.88);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.demo-start[hidden] { display: none; }
+.demo-arrow:disabled { opacity: 0.35; cursor: default; }
+.demo-arrow:disabled:hover { color: var(--ink-2); border-color: var(--line); background: var(--bg); }
+.demo-choice:focus-visible, .demo-arrow:focus-visible, .demo-track:focus-visible, .demo-start:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 3px;
 }
@@ -250,7 +275,7 @@ figcaption {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .demo-track { scroll-behavior: auto; }
+  .demo-rail { transition: none; }
 }
 
 .teaser { padding-top: 20px; }
