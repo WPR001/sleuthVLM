@@ -68,11 +68,38 @@
 
 <main>
 
-  <section class="container demo" id="demo">
-    <video autoplay muted loop playsinline controls preload="metadata" poster="static/videos/sleuthvlm_demo_poster.jpg" aria-label="SleuthVLM demo: two questions answered step by step">
-      <source src="static/videos/sleuthvlm_demo.mp4" type="video/mp4">
-    </video>
-    <p class="demo-caption">SleuthVLM answering two LVOmniBench questions on 36- and 59-minute videos, replayed from its logged trajectories. Commands, outputs and reasoning are quoted verbatim, and every image the model looked at is re-created by re-running its own commands; footage tagged &ldquo;source video&rdquo; is shown for the viewer, and on-frame labels mark what the model&rsquo;s reasoning refers to.</p>
+  <section class="container demo" id="demo" aria-labelledby="demo-heading">
+    <div class="demo-header">
+      <h2 id="demo-heading">Demos</h2>
+      <div class="demo-navigation" role="group" aria-label="Choose a demo">
+        <button class="demo-choice" type="button" data-demo-index="0" aria-pressed="true" aria-controls="demo-original">V + ASR</button>
+        <button class="demo-choice" type="button" data-demo-index="1" aria-pressed="false" aria-controls="demo-a2m">V + ASR + A2M</button>
+      </div>
+      <div class="demo-arrows">
+        <button class="demo-arrow" type="button" data-demo-step="-1" aria-label="Previous demo" aria-controls="demo-track">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg>
+        </button>
+        <span class="demo-position" aria-live="polite" aria-atomic="true">1 / 2</span>
+        <button class="demo-arrow" type="button" data-demo-step="1" aria-label="Next demo" aria-controls="demo-track">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="demo-track" id="demo-track" role="region" aria-roledescription="carousel" aria-label="Demo videos; use left and right arrow keys to switch" tabindex="0">
+      <figure class="demo-slide" id="demo-original" role="group" aria-roledescription="slide" aria-label="1 of 2: V plus ASR">
+        <video autoplay muted loop playsinline controls preload="metadata" poster="static/videos/sleuthvlm_demo_poster.jpg" aria-label="SleuthVLM demo: two questions answered step by step">
+          <source src="static/videos/sleuthvlm_demo.mp4" type="video/mp4">
+        </video>
+        <figcaption class="demo-caption">SleuthVLM answering two LVOmniBench questions on 36- and 59-minute videos, replayed from its logged trajectories. Commands, outputs and reasoning are quoted verbatim, and every image the model looked at is re-created by re-running its own commands; footage tagged &ldquo;source video&rdquo; is shown for the viewer, and on-frame labels mark what the model&rsquo;s reasoning refers to.</figcaption>
+      </figure>
+      <figure class="demo-slide" id="demo-a2m" role="group" aria-roledescription="slide" aria-label="2 of 2: V plus ASR plus Audio to Math" aria-hidden="true" inert>
+        <video muted loop playsinline controls preload="none" poster="static/videos/sleuthvlm_a2m_demo_poster.jpg" aria-label="Audio to Math demo: side-by-side execution trajectories for a music question">
+          <source src="static/videos/sleuthvlm_a2m_demo.mp4" type="video/mp4">
+        </video>
+        <figcaption class="demo-caption"><b>Audio to Math.</b> Opus 5.5 High tackles the same OmniVideoBench music question with V + ASR and V + ASR + A2M. The side-by-side trajectories follow 10 and 6 turns, respectively; waveforms and spectra visualize the audio analysis, revealing the correct two-octave span.</figcaption>
+      </figure>
+    </div>
+    <p class="demo-hint">Swipe or use the arrows to explore both demos.</p>
   </section>
 
   <section class="container teaser">

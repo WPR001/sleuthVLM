@@ -161,6 +161,70 @@ figcaption {
 }
 
 .demo { padding-top: 24px; }
+.demo-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  margin-bottom: 16px;
+}
+.demo-header h2 { margin: 0 auto 0 0; }
+.demo-navigation, .demo-arrows { display: flex; align-items: center; gap: 8px; }
+.demo-navigation {
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-2);
+}
+.demo-choice, .demo-arrow {
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.demo-choice { padding: 9px 16px; border-radius: 999px; }
+.demo-choice[aria-pressed="true"] {
+  color: #fff;
+  background: var(--accent);
+  box-shadow: 0 3px 10px rgba(3, 105, 255, 0.16);
+}
+.demo-choice:hover:not([aria-pressed="true"]) { color: var(--accent); background: var(--accent-soft); }
+.demo-arrow {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--bg);
+}
+.demo-arrow:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+.demo-arrow svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.demo-position { min-width: 44px; text-align: center; font-size: 0.8rem; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.demo-track {
+  display: flex;
+  align-items: flex-start;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  border-radius: var(--radius);
+}
+.demo-track::-webkit-scrollbar { display: none; }
+.demo-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  margin: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+.demo-choice:focus-visible, .demo-arrow:focus-visible, .demo-track:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
 .demo video {
   display: block;
   width: 100%;
@@ -176,6 +240,17 @@ figcaption {
   color: var(--ink-2);
   font-size: 0.9rem;
   line-height: 1.55;
+}
+.demo-hint { margin: 12px 0 0; text-align: center; font-size: 0.78rem; color: var(--ink-2); }
+
+@media (max-width: 600px) {
+  .demo-header { gap: 12px; }
+  .demo-navigation { order: 3; width: 100%; }
+  .demo-choice { flex: 1; padding: 9px 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-track { scroll-behavior: auto; }
 }
 
 .teaser { padding-top: 20px; }
